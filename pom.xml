@@ -18,9 +18,44 @@
         <executions>
           <execution>
             <id>jmeter-tests</id>
-            <phase>verify</phase>
+            <phase>integration-test</phase>
             <goals>
               <goal>jmeter</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.2.1.v20140609</version>
+        <configuration>
+          <httpConnector>
+            <port>7048</port>
+            <idleTimeout>60000</idleTimeout>
+          </httpConnector>
+          <scanIntervalSeconds>0</scanIntervalSeconds>
+          <contextPath>/</contextPath>
+          <stopKey>foo</stopKey>
+          <stopPort>9992</stopPort>
+        </configuration>
+        <executions>
+          <execution>
+            <id>start-jetty</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-jetty</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
             </goals>
           </execution>
         </executions>
