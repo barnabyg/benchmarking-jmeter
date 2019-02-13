@@ -8,6 +8,13 @@
   <name>benchmarking-jmeter Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <pmd.version>3.2</pmd.version>
+    <checkstyle.version>2.13</checkstyle.version>
+    <mavencompiler.version>3.8.0</mavencompiler.version>
+  </properties>
+
   <prerequisites>
     <maven>3.0.1</maven>
   </prerequisites>
@@ -19,12 +26,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>${mavencompiler.version}</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <testSource>1.8</testSource>
-          <testTarget>1.8</testTarget>
+          <release>10</release>
         </configuration>
       </plugin>
 
